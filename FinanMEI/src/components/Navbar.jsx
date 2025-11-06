@@ -1,7 +1,8 @@
-export default function Navbar({ title }) {
+export default function Navbar() {
   return (
-    <header className="bg-gradient-to-r from-purple-600 to-purple-800 text-white p-4 shadow-md">
-      <h1 className="text-2xl font-semibold">{title}</h1>
+    <header className="bg-white shadow px-6 py-4 flex justify-between items-center">
+      <h1 className="text-xl font-bold text-purple-700">Dashboard</h1>
+      <div className="text-sm text-gray-600">Olá, Miguel 👋</div>
     </header>
   );
 }

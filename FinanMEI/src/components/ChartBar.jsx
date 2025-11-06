@@ -1,26 +1,50 @@
-import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-export default function ChartBar({ data }) {
+export default function ChartBar() {
+  const data = {
+    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+    datasets: [
+      {
+        label: 'Receitas',
+        data: [1200, 1900, 3000, 2500, 3200, 4000],
+        backgroundColor: 'rgba(34, 197, 94, 0.6)',
+      },
+      {
+        label: 'Despesas',
+        data: [800, 1400, 2000, 1800, 2200, 2600],
+        backgroundColor: 'rgba(239, 68, 68, 0.6)',
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      title: {
+        display: true,
+        text: 'Receitas vs Despesas (últimos 6 meses)',
+      },
+    },
+  };
+
   return (
-    <Bar
-      data={{
-        labels: data.map((d) => d.label),
-        datasets: [
-          {
-            label: "Vendas (R$)",
-            data: data.map((d) => d.value),
-            backgroundColor: "#a855f7",
-            borderRadius: 10,
-          },
-        ],
-      }}
-      options={{
-        plugins: { legend: { display: false } },
-        scales: { y: { beginAtZero: true } },
-      }}
-    />
+    <div className="h-full bg-white p-6 rounded-lg shadow-md">
+      <div className="h-full">
+        <Bar options={options} data={data} />
+      </div>
+    </div>
   );
 }

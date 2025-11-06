@@ -1,37 +1,14 @@
-import { Home, BarChart3, TrendingUp, Settings, List } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
-  const links = [
-    { name: "Dashboard", icon: Home, path: "/" },
-    { name: "Análise", icon: BarChart3, path: "/analise" },
-    { name: "Lucros", icon: TrendingUp, path: "/lucros" },
-    { name: "Gestão", icon: List, path: "/gestao" },
-    { name: "Configurações", icon: Settings, path: "/config" },
-  ];
-
   return (
-    <aside className="w-64 bg-white shadow-md p-4 flex flex-col">
-      <h1 className="text-xl font-semibold mb-6 text-purple-700">
-        Apoio ao MEI
-      </h1>
-      <nav className="space-y-2">
-        {links.map(({ name, icon: Icon, path }) => (
-          <NavLink
-            key={name}
-            to={path}
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2 rounded-lg transition ${
-                isActive
-                  ? "bg-purple-100 text-purple-700 font-medium"
-                  : "text-gray-600 hover:bg-gray-100"
-              }`
-            }
-          >
-            <Icon size={20} />
-            {name}
-          </NavLink>
-        ))}
+    <aside className="w-64 bg-white shadow-md hidden md:block">
+      <nav className="p-6 space-y-4">
+        <h2 className="text-lg font-bold text-purple-700 mb-4">FinanMEI</h2>
+        <Link to="/dashboard" className="block text-gray-700 hover:text-purple-600">Dashboard</Link>
+        <Link to="/transacoes" className="block text-gray-700 hover:text-purple-600">Transações</Link>
+        <Link to="/analise" className="block text-gray-700 hover:text-purple-600">Análise</Link>
+        <Link to="#" className="block text-gray-700 hover:text-purple-600">Configurações</Link>
       </nav>
     </aside>
   );
